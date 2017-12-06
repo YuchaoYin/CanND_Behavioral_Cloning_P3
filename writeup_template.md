@@ -95,8 +95,7 @@ At the end of the process, as showed in the video the vehicle is able to drive a
 #### 2. Final Model Architecture
 
 The final model architecture is based on the NVIDIA paper.
-
-'''sh
+```sh
 model = Sequential()
 model.add(Lambda(lambda x:x/127.5 - 1.0, input_shape=(160,320,3)))
 model.add(Lambda(resize))
@@ -120,7 +119,7 @@ model.add(Dense(50, activation='elu'))
 model.add(Dense(10, activation='elu'))
 model.add(Dropout(0.5))
 model.add(Dense(1))
-'''
+```
 
 
 #### 3. Creation of the Training Set & Training Process
@@ -128,7 +127,7 @@ model.add(Dense(1))
 As showed above, before training I also normalize the image and crop each image to focus on the portion that is useful for training. To speed up the training process, I also resize each image to a smaller size.
 
 
-'''sh
+```sh
 camera = random.choice(['center','left','right'])
 if camera == 'center':
     img = cv2.imread(join(image_path, center.strip()))
@@ -143,7 +142,7 @@ elif camera == 'right':
 if random.choice([True, False]):
     img = cv2.flip(img, 1)
     steering *= -1.0
-'''
+```
 
 Batchsize is set to 128 and for each epoch I run 300 steps for training process.
 After 8 epochs I save the model and run the simulator in the autonomous mode. The performance is good as showed in the video, the vehicle can drive by itself without leaving the track.

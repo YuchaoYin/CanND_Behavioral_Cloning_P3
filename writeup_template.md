@@ -15,6 +15,11 @@ The goals / steps of this project are the following:
 
 [image1]: ./image_for_writeup/architecture.jpg "Model Architecture"
 [image2]: ./image_for_writeup/visualize_loss.png "Loss Visualization"
+[image3]: ./image_for_writeup/original_image.png "Original Image"
+[image4]: ./image_for_writeup/resize_image.png "Resized Image"
+[image5]: ./image_for_writeup/crop_image.png "Cropping Image"
+[image6]: ./image_for_writeup/flip_image.png "Flip Image"
+
 
 
 ## Rubric Points
@@ -142,5 +147,24 @@ if random.choice([True, False]):
 
 Batchsize is set to 128 and for each epoch I run 300 steps for training process.
 After 8 epochs I save the model and run the simulator in the autonomous mode. The performance is good as showed in the video, the vehicle can drive by itself without leaving the track.
+
+# Improvement
+1. I cropped images before normalization to save normalization operations
+```sh
+model.add(Lambda(resize, input_shape=(160,320,3)))
+model.add(Cropping2D(cropping=((20,10),(0,0))))
+model.add(Lambda(lambda x:x/127.5 - 1.0))
+```
+2. Image Augmentation Visualization
+Original Image:
+![alt text][image3]
+Resized Image:
+![alt text][image4]
+Cropped Image:
+![alt text][image5]
+Flipped Image:
+![alt text][image6]
+3. To improve the performance, I generated more images at the position where the vehicle is touching the lane. Now the vehicle can drive as expected. Pls check it in vedio1.mp4
+
 
 

@@ -156,13 +156,13 @@ model.add(Cropping2D(cropping=((20,10),(0,0))))
 model.add(Lambda(lambda x:x/127.5 - 1.0))
 ```
 2. Image Augmentation Visualization
-Original Image:
+* Original Image:
 ![alt text][image3]
-Resized Image:
+* Resized Image:
 ![alt text][image4]
-Cropped Image:
+* Cropped Image:
 ![alt text][image5]
-Flipped Image:
+* Flipped Image:
 ![alt text][image6]
 3. To improve the performance, I generated more images at the position where the vehicle is touching the lane. Now the vehicle can drive as expected. Pls check it in vedio1.mp4
 
